@@ -14,7 +14,6 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false, length = 50) // VARCHAR(50) maximum 50 characters
@@ -39,6 +38,11 @@ public class Product {
     // Every time we add a new product, these will be populated
     @PrePersist
     public void prePersist() {
+        if (this.id == null) {
+            this.id = UUID.randomUUID();
+        }
+
+
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
     }
