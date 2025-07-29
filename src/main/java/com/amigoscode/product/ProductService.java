@@ -1,5 +1,6 @@
 package com.amigoscode.product;
 
+import com.amigoscode.exception.ResourceNotFound;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ public class ProductService {
 
     public Product getProductByID(UUID uuid) {
         return productRepository.findById(uuid)
-                .orElseThrow(() -> new IllegalArgumentException(uuid + " is not found"));
+                .orElseThrow(() -> new ResourceNotFound(
+                        uuid + " is not found"
+                ));
     }
 }
