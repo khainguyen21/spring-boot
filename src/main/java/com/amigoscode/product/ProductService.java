@@ -1,8 +1,10 @@
 package com.amigoscode.product;
 
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ProductService {
@@ -14,5 +16,10 @@ public class ProductService {
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    public Product getProductByID(UUID uuid) {
+        return productRepository.findById(uuid)
+                .orElseThrow(() -> new IllegalArgumentException(uuid + " is not found"));
     }
 }
