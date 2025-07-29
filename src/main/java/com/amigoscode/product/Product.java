@@ -16,18 +16,40 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     @Column(nullable = false, length = 50) // VARCHAR(50) maximum 50 characters
     private String name;
     private String description;
+
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
+
     @Column(length = 200)
     private String imageUrl;
-    @Column(nullable = false)
+
+    @Column(nullable = false, name = "stock")
     private int stockLevel;
+
+    @Column(nullable = false, updatable = false)
     private Instant createdAt;
     private Instant updatedAt;
     private Instant deletedAt;
+
+
+    // Every time we add a new product, these will be populated
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
+    }
+
+
+    // Everytime we update a product, this field will get updated
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = Instant.now();
+    }
+
 
     public UUID getId() {
         return id;
