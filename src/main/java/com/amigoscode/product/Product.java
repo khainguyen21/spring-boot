@@ -16,10 +16,14 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @Column(nullable = false, length = 50) // VARCHAR(50) maximum 50 characters
     private String name;
     private String description;
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
+    @Column(length = 200)
     private String imageUrl;
+    @Column(nullable = false)
     private int stockLevel;
     private Instant createdAt;
     private Instant updatedAt;
