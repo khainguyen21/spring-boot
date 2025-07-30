@@ -70,4 +70,27 @@ public class ProductService {
                 product.getDeletedAt()
         );
     }
+
+    public void updateProduct(UUID uuid, UpdateProductRequest request) {
+        Product product = productRepository.findById(uuid)
+                .orElseThrow(() -> new ResourceNotFound(uuid + " is not found")
+                );
+
+        if (request.name() != null && !request.name().equals(product.getName())) {
+            product.setName(request.name());
+        }
+        if (request.description() != null && !request.description().equals(product.getDescription())) {
+            product.setDescription(request.description());
+        }
+        if (request.price() != null && !request.price().equals(product.getPrice())) {
+            product.setPrice(request.price());
+        }
+        if (request.imageUrl() != null && !request.imageUrl().equals(product.getImageUrl())) {
+            product.setImageUrl(request.imageUrl());
+        }
+        if (request.stockLevel() != null && !request.stockLevel().equals(product.getStockLevel())) {
+            product.setStockLevel(request.stockLevel());
+        }
+        productRepository.save(product);
+    }
 }
