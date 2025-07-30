@@ -1,11 +1,12 @@
 package com.amigoscode.product;
 
 import com.amigoscode.exception.ResourceNotFound;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -15,12 +16,17 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public List<ProductResponse> getAllProducts() {
+        return productRepository.findAll()
+                .stream()
+                .map(productMapper())
+                .collect(Collectors.toList());
     }
 
-    public Product getProductByID(UUID uuid) {
+
+    public ProductResponse getProductByID(UUID uuid) {
         return productRepository.findById(uuid)
+                .map(productMapper())
                 .orElseThrow(() -> new ResourceNotFound(
                         uuid + " is not found"
                 ));
@@ -50,5 +56,18 @@ public class ProductService {
         );
         productRepository.save(newProduct);
         return id;
+    }
+    private Function<Product, ProductResponse> productMapper() {
+        return product -> new ProductResponse(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getImageUrl(),
+                product.getStockLevel(),
+                product.getCreatedAt(),
+                product.getUpdatedAt(),
+                product.getDeletedAt()
+        );
     }
 }
