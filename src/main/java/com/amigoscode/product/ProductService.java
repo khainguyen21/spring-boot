@@ -25,4 +25,16 @@ public class ProductService {
                         uuid + " is not found"
                 ));
     }
+
+    public void deleteProductByID(UUID id) {
+        boolean exists = productRepository.existsById(id);
+
+        if (!exists) {
+            throw new ResourceNotFound(
+                    "Product with " + id + " is not found"
+            );
+        }
+
+        productRepository.deleteById(id);
+    }
 }

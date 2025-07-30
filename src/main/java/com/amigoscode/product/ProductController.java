@@ -1,9 +1,6 @@
 package com.amigoscode.product;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -26,5 +23,10 @@ public class ProductController {
     @GetMapping("{id}")
     public Product getProductById(@PathVariable("id") UUID id) {
         return productService.getProductByID(id);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteProductById(@PathVariable("id") UUID id) {
+        productService.deleteProductByID(id);
     }
 }
