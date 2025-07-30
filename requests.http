@@ -9,4 +9,17 @@ DELETE http://localhost:8080/api/v1/products/805298c8-8783-4c5c-82cf-b95dfe65a42
 ###
 
 DELETE http://localhost:8080/api/v1/products/46b16608-134c-497c-82b8-10962b9c6537
+###
+
+POST http://localhost:8080/api/v1/products
+Content-Type: application/json
+
+{
+  "name": "Macbook Pro",
+  "description": "Macbook Pro M3 13 inch",
+  "price": 1300,
+  "stockLevel": 90,
+  "imageUrl": "http://apple.com/macbook"
+
+}
 

@@ -29,4 +29,10 @@ public class ProductController {
     public void deleteProductById(@PathVariable("id") UUID id) {
         productService.deleteProductByID(id);
     }
+
+
+    @PostMapping
+    public UUID saveProduct(@RequestBody NewProductRequest request) {
+        return productService.saveNewProduct(request);
+    }
 }

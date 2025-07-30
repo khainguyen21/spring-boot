@@ -37,4 +37,17 @@ public class ProductService {
 
         productRepository.deleteById(id);
     }
+
+    public UUID saveNewProduct(NewProductRequest request) {
+        UUID id = UUID.randomUUID();
+        Product product = new Product();
+        product.setId(id);
+        product.setName(request.name());
+        product.setDescription(request.description());
+        product.setPrice(request.price());
+        product.setStockLevel(request.stockLevel());
+        product.setImageUrl(request.imageUrl());
+        productRepository.save(product);
+        return id;
+    }
 }
