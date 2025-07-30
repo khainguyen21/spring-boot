@@ -34,6 +34,18 @@ public class Product {
     private Instant updatedAt;
     private Instant deletedAt;
 
+    public Product() {
+
+    }
+
+    public Product(UUID id, String name, String description, BigDecimal price, String imageUrl, int stockLevel) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.stockLevel = stockLevel;
+    }
 
     // Every time we add a new product, these will be populated
     @PrePersist
@@ -41,8 +53,6 @@ public class Product {
         if (this.id == null) {
             this.id = UUID.randomUUID();
         }
-
-
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
     }
@@ -53,7 +63,6 @@ public class Product {
     public void preUpdate() {
         this.updatedAt = Instant.now();
     }
-
 
     public UUID getId() {
         return id;

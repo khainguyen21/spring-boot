@@ -40,14 +40,15 @@ public class ProductService {
 
     public UUID saveNewProduct(NewProductRequest request) {
         UUID id = UUID.randomUUID();
-        Product product = new Product();
-        product.setId(id);
-        product.setName(request.name());
-        product.setDescription(request.description());
-        product.setPrice(request.price());
-        product.setStockLevel(request.stockLevel());
-        product.setImageUrl(request.imageUrl());
-        productRepository.save(product);
+        Product newProduct = new Product(
+                id,
+                request.name(),
+                request.description(),
+                request.price(),
+                request.imageUrl(),
+                request.stockLevel()
+        );
+        productRepository.save(newProduct);
         return id;
     }
 }
