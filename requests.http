@@ -16,9 +16,9 @@ Content-Type: application/json
 
 {
   "name": "Macbook Pro",
-  "description": "Macbook Pro M3 13 inch",
-  "price": 1300,
-  "stockLevel": 90,
+  "description": "null",
+  "price": 0.1,
+  "stockLevel": 1,
   "imageUrl": "http://apple.com/macbook"
 
 }
