@@ -29,6 +29,7 @@ Content-Type: application/json
 
 {
   "description": "Samsung",
-  "price": 2000
+  "price": 2000,
+  "imageUrl": "http://..."
 }
 
