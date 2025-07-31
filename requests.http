@@ -33,11 +33,12 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/api/v1/products/2a2bfbb5-60ad-44c1-baf8-e3ea8fcbec56
+PUT http://localhost:8080/api/v1/products/5029abae-c5c6-493d-8d61-54f1fc300335
 Content-Type: application/json
 
 {
-  "price": 1000,
-  "imageUrl": "http://apple.com/macbookM4Pro"
+  "price": 0.001,
+  "imageUrl": "http://apple.com/macbookM4Pro",
+  "stockLevel": 0
 }
 
